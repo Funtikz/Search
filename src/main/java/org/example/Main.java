@@ -21,6 +21,7 @@ public class Main {
 
 
         Result result = compare.compareWord();
+
         System.out.println(stop - start);
         System.out.println("r");
 
