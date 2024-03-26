@@ -44,7 +44,7 @@ public class Compare {
                     }
                 }
                 int countWords = dataCsv.length;
-                if ((double) count / countWords >= 0.7) { //Если у меня запрос совпадает с информацией на 70+ % добавляем
+                if ((double) count / countWords >= 0.4) { //Если у меня запрос совпадает с информацией на 40+ % добавляем
                     matchingStrings.add(entry.getValue());
                 }
             }
