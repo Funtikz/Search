@@ -1,80 +1,67 @@
 package org.example;
 
-import java.awt.geom.RectangularShape;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Compare {
-    private final List<String[]> listTxt;
-    private final Map<String,String> mapCsv;
+    private final List<String> listTxt;
+    private final Map<String[],String> mapCsv;
 
-    public Compare(List<String[]> listTxt, Map<String, String> mapCsv) {
+    public Compare(List<String> listTxt, Map<String[], String> mapCsv) {
         this.listTxt = listTxt;
         this.mapCsv = mapCsv;
     }
 
     public Result compareWord(){
-        String glasn = "ауоеюяийыэ";
+        String glasn = "ауоеюяийыэ"; // Проверка на склонения
+        List<String> changedList = new ArrayList<>(listTxt);
+        changedList = changedList.stream().map(line -> line.replaceAll(",", "") // Убираю лишние символы и привожу к нижнему регистру для сравнения
+                .replaceAll("\\.", "")
+                .replaceAll("\\?", "")
+                .replaceAll("!", "")
+                .toLowerCase())
+                .toList();
+
+
         Result resultClass = new Result();
-        List<String> listTimeOneOperation = new ArrayList<>();
-        Map<String[], List<String>> result = new HashMap<>();
-        for (var line : mapCsv.keySet()){
-            int countWord = line.split(" ").length;
-            boolean flag = false;
+        Map<String, List<String>> result = new HashMap<>();
+        List<String> listOneTimeOperation = new ArrayList<>();
+        int currentPosition = -1;
+        for (var line : changedList){   //Проходимся по листу запросов
+            currentPosition++;
             long start = System.currentTimeMillis();
-            for (var array : listTxt){
+            for (var dataCsv : mapCsv.keySet()){ // Проходимся по данным из CSV файла
                 int count = 0;
-                for (var word : array){
-                    String changingWord = word.toLowerCase().replaceAll(",", "")
-                            .replaceAll("\\.", "")
-                            .replaceAll("\\?", "")
-                            .replaceAll("!", "")
-                            .toLowerCase();
-                    //Проверка на падежи
-                    String last = String.valueOf(changingWord.charAt(changingWord.length()-1));
+                for (var word : dataCsv){ //  Проходимя по каждому слову из строки файла
+                    String last = String.valueOf(word.charAt(word.length()-1));
                     if (glasn.contains(last)){
-                        changingWord = changingWord.substring(0,changingWord.length()-1);
+                        word = word.substring(0,word.length()-1);
                     }
-                    if (line.contains(changingWord)){
+                    if (line.contains(word)){
                         count++;
                     }
                 }
-                String maybe = mapCsv.get(line);
-                if ((double) count /countWord >= 0.7) { //Если процент слов совпадает на 70+ %
-                    if (result.get(array) == null) {
-                        flag = true;
+                int countWords = dataCsv.length;
+                String maybe = mapCsv.get(dataCsv);
+                if ((double) count /countWords >= 0.7){ //Если у меня запрос совпадает с информацией на 70+ % добавляем
+                    if (result.get(listTxt.get(currentPosition)) == null) {
                         List<String> list = new ArrayList<>();
-                        list.add(mapCsv.get(line));
-                        result.put(array, list);
+                        list.add(mapCsv.get(dataCsv));
+                        result.put(listTxt.get(currentPosition), list);
                         resultClass.setMapResult(result);
-                    } else {
-                        flag = true;
-                        List<String> strings = result.get(array);
-                        strings.add(mapCsv.get(line));
-                        result.put(array,strings);
-                        Map<String[], List<String>> mapResult = resultClass.getMapResult();
-                        mapResult.put(array,strings);
+
+                    }else {
+                        List<String> strings = result.get(listTxt.get(currentPosition));
+                        strings.add(mapCsv.get(dataCsv));
+                        result.put(listTxt.get(currentPosition),strings);
+                        Map<String, List<String>> mapResult = resultClass.getMapResult();
+                        mapResult.put(listTxt.get(currentPosition),strings);
                     }
                 }
             }
             long stop = System.currentTimeMillis();
-            if (flag){
-                listTimeOneOperation.add(String.valueOf(stop-start));
-            }
-
+            listOneTimeOperation.add(String.valueOf(stop-start)); // Добавляю время 1 операции в список
         }
-        resultClass.setTimeOneOperation(listTimeOneOperation);
+        resultClass.setTimeOneOperation(listOneTimeOperation);
         return resultClass;
     }
-
-
-//    public Result compareWord2(){
-//        for (var line : listTxt){   //Проходимся по листу запросов
-//
-//        }
-//
-//    }
-
-
-
 }

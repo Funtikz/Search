@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Readers;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,14 +13,13 @@ public class TxtReader {
         this.path = path;
     }
 
-    public List<String[]> readData(){
-        List<String[]> list = new ArrayList<>();
+    public List<String> readData(){
+        List<String> list = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line;
             while ( (line = reader.readLine()) != null ){
-                String[] s = line.split(" ");
 
-                list.add(s);
+                list.add(line);
             }
         }
         catch (IOException e){

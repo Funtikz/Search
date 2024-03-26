@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Readers;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -16,8 +16,8 @@ public class CsvReader {
     }
 
 
-    public Map<String, String> readData() {
-        Map<String, String> map = new HashMap<>();
+    public Map<String[], String> readData() {
+        Map<String[], String> map = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -28,7 +28,10 @@ public class CsvReader {
                         .toLowerCase();
                 String[] strings = line.split("\\|");
                 if (strings.length >= 3) {
-                    map.put( strings[2].replaceAll("\"", ""), strings[0].replaceAll("\"", ""));
+                    map.put( strings[2]
+                            .replaceAll("\"", "").replaceAll(",", "")
+                            .split(" ")
+                            , strings[0].replaceAll("\"", ""));
                 } else {
 
                 }

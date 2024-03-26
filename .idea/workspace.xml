@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0d9e97c-64bb-4ec3-8a07-0eda5403b552" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/JsonHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Compare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Compare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Readers/CsvReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TxtReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Readers/TxtReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +41,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.search [clean].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/228fu/IdeaProjects/Airoport",
     "node.js.detected.package.eslint": "true",
@@ -64,7 +71,7 @@
       <module name="45673645-search" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.*" />
+          <option name="PATTERN" value="org.example.Readers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -101,7 +108,7 @@
       <workItem from="1711357369503" duration="202000" />
       <workItem from="1711358382212" duration="2501000" />
       <workItem from="1711377259840" duration="8311000" />
-      <workItem from="1711449572722" duration="8098000" />
+      <workItem from="1711449572722" duration="15435000" />
     </task>
     <servers />
   </component>
@@ -109,18 +116,10 @@
     <option name="version" value="3" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.util.HashMap$Node" memberName="key" />
+        <PinnedItemInfo parentTag="org.example.Result" memberName="mapResult" />
         <PinnedItemInfo parentTag="java.util.HashMap$Node" memberName="value" />
       </pinned-members>
     </pin-to-top-manager>
